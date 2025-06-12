@@ -8,41 +8,61 @@ const exchangeRates = {
     "CAD": 162.30,
     "JPY": 1.89,
     "CNY": 38.68
-};
-
-const currencySelects = document.querySelectorAll("select");
-Object.keys(exchangeRates).forEach(currency => {
-    currencySelects.forEach(select => {
-        let option = document.createElement("option");
-        option.value = currency;
-        option.textContent = currency;
-        select.appendChild(option);
-    });
-});
-
-function convertCurrency() {
-    let fromCurrency = document.getElementById("fromCurrency").value;
-    let toCurrency = document.getElementById("toCurrency").value;
-    let amount = parseFloat(document.getElementById("amount").value);
-
+  };
+  
+  const fromCurrency = document.getElementById("fromCurrency");
+  const toCurrency = document.getElementById("toCurrency");
+  const amountInput = document.getElementById("amount");
+  const modal = document.getElementById("resultModal");
+  const overlay = document.getElementById("overlay");
+  const modalText = document.getElementById("modalText");
+  const historyList = document.getElementById("historyList");
+  
+  Object.keys(exchangeRates).forEach(currency => {
+    let option1 = new Option(currency, currency);
+    let option2 = new Option(currency, currency);
+    fromCurrency.add(option1.cloneNode(true));
+    toCurrency.add(option2.cloneNode(true));
+  });
+  
+  fromCurrency.value = "PKR";
+  toCurrency.value = "USD";
+  
+  function convertCurrency() {
+    const from = fromCurrency.value;
+    const to = toCurrency.value;
+    const amount = parseFloat(amountInput.value);
+  
     if (isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid amount!");
-        return;
+      alert("Please enter a valid amount!");
+      return;
     }
-
-    let inPKR = amount * exchangeRates[fromCurrency];
-    let convertedAmount = inPKR / exchangeRates[toCurrency];
-
-    document.getElementById("modal-text").textContent = 
-        `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
-    
-    document.getElementById("modal-overlay").classList.add("show");
-    document.getElementById("result-modal").classList.add("show");
-    document.body.classList.add("modal-active");  
+  
+    const inPKR = amount * exchangeRates[from];
+    const result = inPKR / exchangeRates[to];
+    const resultText = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+  
+    modalText.textContent = resultText;
+    modal.style.display = "block";
+    overlay.style.display = "block";
+  
+    addToHistory(resultText);
+  }
+  
+  function closeModal() {
+    modal.style.display = "none";
+    overlay.style.display = "none";
+    amountInput.value = "";
+  }
+  
+  function addToHistory(entry) {
+    const li = document.createElement("li");
+    li.innerHTML = `${entry} <button class="delete-btn">🗑</button>`;
+  
+    li.querySelector(".delete-btn").addEventListener("click", () => {
+      li.remove();
+    });
+  
+    historyList.prepend(li);
 }
-
-function closeModal() {
-    document.getElementById("modal-overlay").classList.remove("show");
-    document.getElementById("result-modal").classList.remove("show");
-    document.body.classList.remove("modal-active");
-}
+  
