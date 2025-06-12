@@ -4,7 +4,7 @@ My semester project for the Web Programming course.
 
 This project is a modern, user-friendly currency converter that lets us convert any amount between supported currencies using PKR (Pakistani Rupee) as the base reference.
 
-<br><br>
+<br>
 
 <bold>How It Works:</bold>
 Select <strong>"From Currency":</strong> Choose the currency we currently have.
