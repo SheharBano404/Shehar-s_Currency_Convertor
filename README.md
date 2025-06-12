@@ -6,7 +6,7 @@ This project is a modern, user-friendly currency converter that lets us convert 
 
 <br>
 
-<bold>How It Works:</bold>
+<bold>How It Works:</bold><br>
 Select <strong>"From Currency":</strong> Choose the currency we currently have.
 <br>
 Select <strong>"To Currency":</strong> Choose the currency we want to convert to.
