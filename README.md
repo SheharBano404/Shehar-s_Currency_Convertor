@@ -2,13 +2,23 @@
 My semester project for the Web Programming course.
 <br>
 
-This project is a simple currency converter. It allows us to convert an amount from one currency to another.
+This project is a modern, user-friendly currency converter that lets us convert any amount between supported currencies using PKR (Pakistani Rupee) as the base reference.
+
 <br><br>
-Here's how it works:
-<br><br>
-Select <strong>"Dropping This":</strong> Choose the currency we have.<br>
-Select <strong>"Grabbing That":</strong> Choose the currency we want to convert to.<br>
-<strong>Enter Amount:</strong> Type in the amount of money we want to convert.<br>
-Click <strong>"Show Me the Money!":</strong> The converted amount will appear in a pop-up window.<br>
-<strong>"Use Again"</strong> button: Click this to close the pop-up and perform another conversion.<br>
-The converter includes exchange rates for several currencies, with Pakistani Rupee (PKR) as the base.
+
+<bold>How It Works:</bold>
+Select <strong>"From Currency":</strong> Choose the currency we currently have.
+<br>
+Select <strong>"To Currency":</strong> Choose the currency we want to convert to.
+<br>
+<strong>Enter Amount:</strong> Type the amount we'd like to convert.
+<br>
+Click <strong>"Convert":</strong> A result modal will appear in the center of our screen with the converted value.
+<br>
+Click <strong>"Use Again":</strong> This closes the modal, resets the form, and lets us make another conversion.
+<br>
+<strong>Conversion History:</strong> All conversions are saved on the right panel. We can review or delete individual entries easily.
+
+<br>
+The app supports real-time conversions between multiple currencies using preset exchange rates. The entire interface is sleek, responsive, and tailored for an engaging experience, perfect for quick conversions, with a focus on PKR as the main calculation unit.
+
