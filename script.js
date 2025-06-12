@@ -27,6 +27,8 @@ const exchangeRates = {
   
   fromCurrency.value = "PKR";
   toCurrency.value = "USD";
+ 
+  window.addEventListener("DOMContentLoaded", loadHistory);
   
   function convertCurrency() {
     const from = fromCurrency.value;
@@ -47,6 +49,7 @@ const exchangeRates = {
     overlay.style.display = "block";
   
     addToHistory(resultText);
+    saveHistory();
   }
   
   function closeModal() {
@@ -61,8 +64,22 @@ const exchangeRates = {
   
     li.querySelector(".delete-btn").addEventListener("click", () => {
       li.remove();
+      saveHistory();
     });
   
     historyList.prepend(li);
-}
+  }
+  
+  function saveHistory() {
+    const historyItems = [];
+    historyList.querySelectorAll("li").forEach(li => {
+      historyItems.push(li.textContent.replace("🗑", "").trim());
+    });
+    localStorage.setItem("conversionHistory", JSON.stringify(historyItems));
+  }
+  
+  function loadHistory() {
+    const savedHistory = JSON.parse(localStorage.getItem("conversionHistory")) || [];
+    savedHistory.forEach(entry => addToHistory(entry));
+  }
   
